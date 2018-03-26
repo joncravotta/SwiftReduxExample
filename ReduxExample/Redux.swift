@@ -36,7 +36,7 @@ enum UserAction {
     case updateSizes([Int])
     case updateZipAndSizes(zip: Int, sizes: [Int])
 }
-// user.update.zip(100).sizes(202020
+
 class UserStore: Store {
     
     typealias Action = UserAction
