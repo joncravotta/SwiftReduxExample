@@ -25,11 +25,11 @@ final class UserExample {
     }
     
     func test() {
-        store.dispatch(action: UserName(name: "Baz"))
-        store.dispatch(action: UserSizes(sizes: [0, 2]))
-        store.dispatch(action: UserZipCode(zipcode: 10014))
-        store.dispatch(action: UserZipCodeAndSizes(zipcode: 10013, sizes: [4,5,6,8]))
-        store.dispatch(action: ToggleDarkTheme(enable: true))
+        store.dispatch(UserName(name: "Baz"))
+        store.dispatch(UserSizes(sizes: [0, 2]))
+        store.dispatch(UserZipCode(zipcode: 10014))
+        store.dispatch(UserZipCodeAndSizes(zipcode: 10013, sizes: [4,5,6,8]))
+        store.dispatch(ToggleDarkTheme(enable: true))
     }
     
     func observe() {

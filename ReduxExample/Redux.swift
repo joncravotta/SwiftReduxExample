@@ -23,7 +23,7 @@ final class Store<State: StateType> {
         self.state = MutableProperty(state)
     }
 
-    func dispatch(action: Action) {
+    func dispatch(_ action: Action) {
         state.value = reducer(action, state.value)
     }
 
