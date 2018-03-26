@@ -8,6 +8,9 @@
 
 import UIKit
 
+// It's a var so it can be replaced and the app state fully reset
+var store = Store<AppState>(reducer: appReducer, state: .initial)
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
