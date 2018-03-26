@@ -1,0 +1,6 @@
+framework module Pods_ReduxExample {
+  umbrella header "Pods-ReduxExample-umbrella.h"
+
+  export *
+  module * { export * }
+}
