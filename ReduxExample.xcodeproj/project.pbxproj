@@ -16,6 +16,9 @@
 		1CF6803220692DA30022C9E7 /* ReduxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF6803120692DA30022C9E7 /* ReduxTests.swift */; };
 		1CF6803920692DC30022C9E7 /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CF6802720687A000022C9E7 /* Redux.swift */; };
 		895901BBDECC2146CC7DEE8E /* Pods_ReduxTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36947F3EFFA34BEFF75C6EDA /* Pods_ReduxTests.framework */; };
+		BF6A98DA2069B5D700B4D05E /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6A98D92069B5D700B4D05E /* AppState.swift */; };
+		BF6A98DC2069B5FB00B4D05E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6A98DB2069B5FB00B4D05E /* User.swift */; };
+		BF6A98DE2069B65A00B4D05E /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6A98DD2069B65A00B4D05E /* AppConfiguration.swift */; };
 		FDDE9FCDBEA4910EB4969E60 /* Pods_ReduxExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F7A592F2BBBDB070D9E1D6 /* Pods_ReduxExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +47,9 @@
 		36947F3EFFA34BEFF75C6EDA /* Pods_ReduxTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReduxTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63E6A6F89869742E0F68463B /* Pods-ReduxExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReduxExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReduxExample/Pods-ReduxExample.release.xcconfig"; sourceTree = "<group>"; };
 		8C3A44712CC3EA2BA6F64619 /* Pods-ReduxTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReduxTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReduxTests/Pods-ReduxTests.release.xcconfig"; sourceTree = "<group>"; };
+		BF6A98D92069B5D700B4D05E /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		BF6A98DB2069B5FB00B4D05E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BF6A98DD2069B65A00B4D05E /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		D12C02EA05B7841D17CB7E14 /* Pods-ReduxTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReduxTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReduxTests/Pods-ReduxTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC904AC289E2A89F33F26855 /* Pods-ReduxExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReduxExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReduxExample/Pods-ReduxExample.debug.xcconfig"; sourceTree = "<group>"; };
 		F0F7A592F2BBBDB070D9E1D6 /* Pods_ReduxExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReduxExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +105,9 @@
 				1CF6801C2066AF840022C9E7 /* LaunchScreen.storyboard */,
 				1CF6801F2066AF840022C9E7 /* Info.plist */,
 				1CF6802720687A000022C9E7 /* Redux.swift */,
+				BF6A98DD2069B65A00B4D05E /* AppConfiguration.swift */,
+				BF6A98D92069B5D700B4D05E /* AppState.swift */,
+				BF6A98DB2069B5FB00B4D05E /* User.swift */,
 			);
 			path = ReduxExample;
 			sourceTree = "<group>";
@@ -354,9 +363,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF6A98DE2069B65A00B4D05E /* AppConfiguration.swift in Sources */,
 				1CF680162066AF840022C9E7 /* ViewController.swift in Sources */,
+				BF6A98DC2069B5FB00B4D05E /* User.swift in Sources */,
 				1CF680142066AF840022C9E7 /* AppDelegate.swift in Sources */,
 				1CF6802820687A000022C9E7 /* Redux.swift in Sources */,
+				BF6A98DA2069B5D700B4D05E /* AppState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
