@@ -29,7 +29,9 @@ final class UserExample {
         store.dispatch(UserSizes(sizes: [0, 2]))
         store.dispatch(UserZipCode(zipcode: 10014))
         store.dispatch(UserZipCodeAndSizes(zipcode: 10013, sizes: [4,5,6,8]))
-        store.dispatch(ToggleDarkTheme(enable: true))
+        let isDarkThemed = state().appConfiguration.isDarkThemed
+        print("Before toggling dark theme: \(isDarkThemed)")
+        store.dispatch(ToggleDarkTheme(enable: !isDarkThemed))
     }
     
     func observe() {
