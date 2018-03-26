@@ -54,6 +54,7 @@ struct LoadAppConfiguration: Action {}
 private func loadAppConfiguration(from defaults: UserDefaults = .standard) -> AppConfiguration {
     let pushNotificationsEnabled = defaults.bool(forKey: .pushNotificationsKey)
     let darkThemeEnabled = defaults.bool(forKey: .darkThemeKey)
+    print("Configuration loaded!")
 
     return AppConfiguration(arePushNotificationsEnabled: pushNotificationsEnabled,
                             isDarkThemed: darkThemeEnabled)
