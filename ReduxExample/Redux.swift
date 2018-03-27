@@ -1,82 +1,53 @@
 //
-//  GenericRedux.swift
+//  Redux.swift
 //  ReduxExample
 //
 //  Created by Jonathan Cravotta on 3/25/18.
 //  Copyright © 2018 Jonathan Cravotta. All rights reserved.
 //
 
-import Foundation
 import ReactiveSwift
 
-protocol Store {
-    associatedtype State
-    associatedtype Action
-    
-    var state: MutableProperty<State> { get }
-    func reducer(_ action: Action, _ state: State) -> State
-}
+protocol StateType {}
+protocol Action {}
 
-extension Store {
-    func dispatch(action: Action) {
+typealias Reducer<ReducerStateType> = (Action, ReducerStateType) -> ReducerStateType
+
+final class Store<State: StateType> {
+
+    let reducer: Reducer<State>
+    let state: MutableProperty<State>
+
+    init(reducer: @escaping Reducer<State>, state: State) {
+        self.reducer = reducer
+        self.state = MutableProperty(state)
+    }
+
+    func dispatch(_ action: Action) {
         state.value = reducer(action, state.value)
     }
-}
 
-// Example:
-struct User {
-    var name: String
-    var zipcode: Int
-    var sizes: [Int]
-}
+    @discardableResult
+    public func observeSignal<Part: Equatable>(keyPath: KeyPath<State,Part>, action: @escaping (Part) -> Void) -> Disposable? {
+        return state.signal.combinePrevious().observeValues { previous, current in
+            let previousPart = previous[keyPath: keyPath]
+            let currentPart = current[keyPath: keyPath]
 
-enum UserAction {
-    case updateName(String)
-    case updateZip(Int)
-    case updateSizes([Int])
-    case updateZipAndSizes(zip: Int, sizes: [Int])
-}
-
-class UserStore: Store {
-    
-    typealias Action = UserAction
-    typealias State = User
-    
-    var state: MutableProperty<User>
-
-    init(user: User) {
-        self.state = MutableProperty(user)
-    }
-    
-    func reducer(_ action: Action, _ state: User) -> User {
-        var newState = state
-        
-        switch action {
-        case .updateName(let name): newState.name = name
-        case .updateZip(let zip): newState.zipcode = zip
-        case .updateSizes(let sizes): newState.sizes = sizes
-            
-        case let .updateZipAndSizes(zip, sizes):
-            newState.zipcode = zip
-            newState.sizes = sizes
+            if previousPart != currentPart {
+                action(currentPart)
+            }
         }
-        
-        return newState
+    }
+
+    @discardableResult
+    public func observeProducer<Part: Equatable>(keyPath: KeyPath<State,Part>, action: @escaping (Part) -> Void) -> Disposable {
+        return state.producer.combinePrevious().startWithValues { previous, current in
+            let previousPart = previous[keyPath: keyPath]
+            let currentPart = current[keyPath: keyPath]
+
+            if previousPart != currentPart {
+                action(currentPart)
+            }
+        }
     }
 }
-
-
-//:D
-extension MutableProperty {
-    @discardableResult
-    public func observeProducer(_ value: @escaping (MutableProperty.Value) -> Void) -> Disposable {
-        return producer.startWithValues(value)
-    }
-    
-    @discardableResult
-    public func observeSignal(_ value: @escaping (MutableProperty.Value) -> Void) -> Disposable? {
-        return signal.observeValues(value)
-    }
-}
-
-

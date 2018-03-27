@@ -8,36 +8,39 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
         let t = UserExample()
         t.test()
     }
 }
 
-class UserExample {
-    
-    let userStore: UserStore
+final class UserExample {
     
     init() {
-        let user = User(name: "Foo", zipcode: 10021, sizes: [4, 5])
-        self.userStore = UserStore(user: user)
         observe()
     }
     
     func test() {
-        userStore.dispatch(action: .updateName("Baz"))
-        userStore.dispatch(action: .updateSizes([0, 2]))
-        userStore.dispatch(action: .updateZip(10014))
-        userStore.dispatch(action: .updateZipAndSizes(zip: 10013, sizes: [4,5,6,8]))
+        store.dispatch(UserName(name: "Baz"))
+        store.dispatch(UserSizes(sizes: [0, 2]))
+        store.dispatch(UserZipCode(zipcode: 10014))
+        store.dispatch(UserZipCodeAndSizes(zipcode: 10013, sizes: [4,5,6,8]))
+        let isDarkThemed = state().appConfiguration.isDarkThemed
+        print("Before toggling dark theme: \(isDarkThemed)")
+        store.dispatch(ToggleDarkTheme(enable: !isDarkThemed))
     }
     
     func observe() {
-        userStore.state.observeProducer { (user) in
+        store.observeProducer(keyPath: \.user) { user in
             print("Name: \(user.name), Zip: \(user.zipcode), Sizes: \(user.sizes.map { $0 })")
+        }
+
+        store.observeProducer(keyPath: \.appConfiguration) { appConfiguration in
+            print("Push Notifications enabled: \(appConfiguration.arePushNotificationsEnabled), Dark Theme: \(appConfiguration.isDarkThemed)")
         }
     }
 }
